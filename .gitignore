@@ -6,3 +6,4 @@ slides.html
 *.pptx
 *.cpython
 *__pycache__/
+content.txt

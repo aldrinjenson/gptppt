@@ -17,7 +17,7 @@ class: "{color_scheme}"
 
 
 def generate_slides(markdown_text, marp_header):
-    print(marp_header)
+    # st.toast("Generating Preview...", icon="🚀")
     with open("slides.md", "w") as f:
         f.write(marp_header)
         f.write("\n\n")
@@ -28,6 +28,7 @@ def generate_slides(markdown_text, marp_header):
 
 
 def generate_pdf(markdown_text):
+    st.toast("Generating PDF...", icon="🚀")
     if os.path.exists("slides.pdf"):
         os.remove("slides.pdf")
     with open("slides.md", "w") as f:
@@ -39,6 +40,7 @@ def generate_pdf(markdown_text):
 
 
 def generate_pptx(markdown_text):
+    st.toast("Generating Powerpoint file...", icon="🚀")
     if os.path.exists("slides.pptx"):
         os.remove("slides.pptx")
     with open("slides.md", "w") as f:
