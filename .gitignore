@@ -2,3 +2,7 @@
 slides.html
 .env
 *.md
+*.pdf
+*.pptx
+*.cpython
+*__pycache__/
