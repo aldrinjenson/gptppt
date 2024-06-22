@@ -11,8 +11,8 @@ from utils.generateUtils import (
 
 
 # Streamlit app layout
-st.set_page_config(page_title="Markdown to Slides Previewer", layout="wide")
-st.title("Markdown to Slides Previewer")
+st.set_page_config(page_title="Markdown to Slides Generator", layout="wide")
+st.title("Markdown to Slides Generator")
 
 st.sidebar.title("Customization")
 theme = st.sidebar.selectbox("Theme", ["default", "gaia", "uncover"])

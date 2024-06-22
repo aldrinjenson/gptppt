@@ -1,94 +1,81 @@
-# Markdown to Slides Previewer
+# Ezy-Slide-generator
 
-This project is a Streamlit app that allows users to input Markdown text and generate a live preview of slides on the right side of the screen. It uses Marp CLI to convert Markdown to HTML slides.
+This Streamlit web application allows you to generate Marp Markdown slides for presentations with customizable themes and attributes. You can preview the slides in real-time and download them as HTML, PDF, or PPTX.
 
-## Features
+### Features:
 
-- **Markdown Input**: Users can input Markdown text to create slides.
-- **Live Preview**: A live preview of the slides is displayed on the right side.
-- **Interactive**: The app provides an interactive way to see changes in real-time as you edit your Markdown.
+- **Customization Sidebar:** Modify theme, title, keywords, pagination, size, and footer for your slides.
+- **Markdown Input:** Enter your presentation content using Markdown syntax.
+- **Real-time Preview:** See the generated slides instantly in the preview pane.
+- **Download Options:** Export slides as PDF or PPTX files directly from the app.
+- **Docker Support:** Easily deploy the app using Docker or Docker Compose.
+- **Theming** - Built in auto applyable 3 styles that can be swapped with single click
+- **Color Scheme support** Supports both dark and light color schemes for slides generated
 
-## Installation
+### How to Use:
 
-### Prerequisites
+1. **Clone the Repository:**
 
-- **Python**: Make sure Python is installed on your system.
-- **Node.js**: Marp CLI requires Node.js. You can download it from [nodejs.org](https://nodejs.org/).
-
-### Steps
-
-1. **Clone the Repository**:
-
-   ```sh
-   git clone https://github.com/your-username/markdown-to-slides-previewer.git
-   cd markdown-to-slides-previewer
+   ```bash
+   git clone https://github.com/aldrinjenson/ezy-slides
+   cd streamlit-marp-slide-generator
    ```
 
-2. **Install Python Dependencies**:
+2. **Install Dependencies:**
+   Make sure you have Python and Streamlit installed.
 
-   ```sh
+   ```bash
    pip install streamlit
    ```
 
-3. **Install Marp CLI**:
-   ```sh
-   npm install -g @marp-team/marp-cli
-   ```
+3. **Run the Application Locally:**
 
-## Usage
-
-1. **Run the Streamlit App**:
-
-   ```sh
+   ```bash
    streamlit run app.py
    ```
 
-2. **Open Your Browser**:
+   The app will open in your default web browser.
 
-   - Go to the URL provided by Streamlit (usually `http://localhost:8501`).
+4. **Using Docker for Deployment:**
+   If you prefer Docker for deployment, follow these steps:
 
-3. **Enter Markdown**:
-   - Enter your Markdown text in the input area on the left side.
-   - Click the "Generate Preview" button to see the slides on the right side.
+   - **Build the Docker Image:**
 
-## Example
+     ```bash
+     docker build -t streamlit-marp-slide-generator .
+     ```
 
-Here’s an example of Markdown that you can use in the app:
+   - **Run the Docker Container:**
 
-```markdown
-# Slide 1
+     ```bash
+     docker run -p 8501:8501 streamlit-marp-slide-generator
+     ```
 
-Welcome to my presentation!
+   - **Access the App:**
+     Open your web browser and go to `http://localhost:8501` to access the application running inside the Docker container.
 
----
+5. **Using Docker Compose (Optional):**
+   If you prefer using Docker Compose for managing your application and its dependencies, use the provided `docker-compose.yml` file.
 
-# Slide 2
+   - **Build and Run with Docker Compose:**
 
-Here is some more content.
+     ```bash
+     docker-compose up -d --build
+     ```
 
----
+   - **Access the App:**
+     Open your web browser and go to `http://localhost:8501` to access the application managed by Docker Compose.
 
-# Slide 3
+### Screenshots:
 
-- Point 1
-- Point 2
-- Point 3
-```
+![Light theme Screenshot](screenshots/1.png)
 
-## Project Structure
+![Dark theme Screenshot](screenshots/2.png)
 
-```
-markdown-to-slides-previewer/
-├── app.py          # Main Streamlit app script
-├── slides.md       # Temporary file for Markdown input (auto-generated)
-├── slides.html     # Temporary file for HTML slides (auto-generated)
-└── README.md       # Project README file
-```
+### About:
 
-## Contributing
+This project is developed using Streamlit and Marp CLI to simplify the process of creating professional presentations from Markdown. It is suitable for educators, professionals, and anyone needing a quick and efficient way to generate and customize slides.
 
-Contributions are welcome! Please feel free to submit a Pull Request or open an issue.
+### License:
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
