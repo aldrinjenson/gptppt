@@ -39,6 +39,7 @@ Additional Instructions:
             }
         ],
         model="gpt-3.5-turbo",
+        temperature=0.2,
     )
     markdown = chat_completion.choices[0].message.content.strip()
     return markdown
