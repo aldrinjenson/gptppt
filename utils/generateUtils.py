@@ -16,12 +16,10 @@ class: "{color_scheme}"
     return header
 
 
-def generate_slides(markdown_text, marp_header):
+def generate_slides(markdown):
     # st.toast("Generating Preview...", icon="🚀")
     with open("slides.md", "w") as f:
-        f.write(marp_header)
-        f.write("\n\n")
-        f.write(markdown_text)
+        f.write(markdown)
     subprocess.run(["marp", "--html", "slides.md", "-o", "slides.html"])
     with open("slides.html", "r") as f:
         return f.read()

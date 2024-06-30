@@ -25,7 +25,12 @@ def main():
         """
         )
 
-        st.button("Get Started", type="primary", use_container_width=True)
+        if st.button(
+            "Get Started",
+            type="primary",
+            use_container_width=True,
+        ):
+            st.switch_page("pages/Generate.py")
 
     with col2:
         # Replace with an actual image of your app or a sample slide

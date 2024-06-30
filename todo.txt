@@ -1,0 +1,4 @@
+
+- Some way to chat with AI and modify the existing markdown. like split it based on paragraphs etc
+- Dont restart from start on making a change in the html slides
+- Either change saved file name by asking user or generating from gpt

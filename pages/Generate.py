@@ -24,10 +24,10 @@ def init_session_state():
         st.session_state.size = "16:9"
     if "color_scheme" not in st.session_state:
         st.session_state.color_scheme = "Default"
+    if "yaml_markdown" not in st.session_state:
+        st.session_state.yaml_markdown = ""
     if "footer" not in st.session_state:
-        st.session_state.footer = (
-            "Created with GPTPPT | [Buy me a coffee](https://www.buymeacoffee.com)"
-        )
+        st.session_state.footer = "Created with GPTPPT | [Buy me a coffee](https://www.buymeacoffee.com/aldrinjenson)"
 
 
 # Callback functions for input changes
@@ -43,6 +43,17 @@ def generate_markdown():
             )
     else:
         st.session_state.skip_project_details = True
+
+
+def get_markdown_with_header_yaml(markdown_text):
+    marp_header = generate_marp_header(
+        st.session_state.theme,
+        st.session_state.paginate,
+        st.session_state.size,
+        st.session_state.footer,
+        st.session_state.color_scheme,
+    )
+    return marp_header + "\n\n" + markdown_text
 
 
 def main():
@@ -74,9 +85,9 @@ def main():
         st.markdown(
             """
             <div style="text-align: center;">
-                <p>Support GPTPPT:</p>
-                <a href="https://www.buymeacoffee.com" target="_blank">
-                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;">
+                <p>Think this is useful?</p>
+                <a href="https://www.buymeacoffee.com/aldrinjenson" target="_blank">
+                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" >
                 </a>
             </div>
             """,
@@ -105,10 +116,10 @@ def main():
         )
 
     if st.session_state.project_details or st.session_state.skip_project_details:
-        st.header("Presentation Outline")
         col1, col2 = st.columns(2)
 
         with col1:
+            st.subheader("Presentation Outline")
             markdown_input = st.text_area(
                 "Edit Markdown for slides:",
                 value=st.session_state.generated_markdown,
@@ -118,27 +129,25 @@ def main():
 
         with col2:
             st.subheader("Slide Preview")
+            st.write("Auto preview based on the markdown entered")
             if markdown_input.strip():
                 with st.spinner("Generating preview..."):
-                    marp_header = generate_marp_header(
-                        st.session_state.theme,
-                        st.session_state.paginate,
-                        st.session_state.size,
-                        st.session_state.footer,
-                        st.session_state.color_scheme,
+                    markdown_with_header_yaml = get_markdown_with_header_yaml(
+                        markdown_input
                     )
-                    html_output = generate_slides(markdown_input, marp_header)
-                    st.components.v1.html(html_output, height=450, scrolling=True)
+                    st.session_state.yaml_markdown = markdown_with_header_yaml
+                    html_output = generate_slides(st.session_state.yaml_markdown)
+                    st.components.v1.html(html_output, height=470, scrolling=True)
             else:
                 st.info("Enter some Markdown to preview slides.")
 
-        # Generate PDF and PPTX buttons
         col3, col4 = st.columns(2)
+
         with col3:
             if st.button("Generate PDF", type="primary"):
                 if markdown_input.strip():
                     with st.spinner("Generating PDF..."):
-                        pdf_data = generate_pdf(markdown_input)
+                        pdf_data = generate_pdf(st.session_state.yaml_markdown)
                         st.download_button(
                             label="Download PDF",
                             data=pdf_data,
@@ -152,7 +161,7 @@ def main():
             if st.button("Generate PPTX", type="primary"):
                 if markdown_input.strip():
                     with st.spinner("Generating PPTX..."):
-                        pptx_data = generate_pptx(markdown_input)
+                        pptx_data = generate_pptx(st.session_state.yaml_markdown)
                         st.download_button(
                             label="Download PPTX",
                             data=pptx_data,
@@ -166,7 +175,7 @@ def main():
     st.markdown(
         """
         <div style="text-align: center;">
-            <p>Made with ❤️ by Aldrin Jenson | <a href="https://github.com/aldrinjenson/gptppt" target="_blank">GitHub</a></p>
+            <p>Made with ❤️ by <a href="https://linkedin.com/in/aldrinjenson" target="_blank">Aldrin Jenson</a></p>
         </div>
         """,
         unsafe_allow_html=True,
