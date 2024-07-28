@@ -31,8 +31,11 @@ def generate_pdf(markdown_text):
         os.remove("slides.pdf")
     with open("slides.md", "w") as f:
         f.write(markdown_text)
+    print("before marp")
     subprocess.run(["marp", "--pdf", "slides.md", "-o", "slides.pdf"])
+    print('after marp')
     with open("slides.pdf", "rb") as file:
+        print('inside with')
         pdf_data = file.read()
     return pdf_data
 

@@ -25,13 +25,13 @@ This Streamlit web application allows you to generate Marp Markdown slides for p
    Make sure you have Python and Streamlit installed.
 
    ```bash
-   pip install streamlit
+   pip install -r requirements.txt
    ```
 
 3. **Run the Application Locally:**
 
    ```bash
-   streamlit run app.py
+   streamlit run Home.py
    ```
 
    The app will open in your default web browser.
