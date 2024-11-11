@@ -85,7 +85,7 @@ def main():
         st.markdown(
             """
             <div style="text-align: center;">
-                <p>Think this is useful?</p>
+                <p>Found this useful?</p>
                 <a href="https://www.buymeacoffee.com/aldrinjenson" target="_blank">
                     <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" >
                 </a>
